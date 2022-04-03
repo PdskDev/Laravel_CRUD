@@ -47,7 +47,7 @@
           <a class="nav-link active" aria-current="page" href="{{ route('accueil')}}">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('etudiants') }}">Etudiants</a>
+          <a class="nav-link" href="{{ route('etudiants.index') }}">Etudiants</a>
         </li>
       </ul>
       <form class="d-flex">

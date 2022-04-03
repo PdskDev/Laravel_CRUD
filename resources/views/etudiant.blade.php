@@ -5,7 +5,7 @@
     
     <div>
       <div class="d-flex justify-content-end mt-4">
-          <a href="#" class="btn btn-primary mb-3">Ajouter un nouvel etudiant</a>
+          <a href="{{ route('etudiants.create') }}" class="btn btn-primary mb-3">Ajouter un nouvel etudiant</a>
       </div>
 
     <table class="table table-bordered table-hover">
@@ -31,7 +31,7 @@
           @endforeach
         </tbody>
       </table>
-      <div class="d-flex justify-content-center mt-4">
+      <div class="d-flex justify-content-center mt-2 mb-2">
         {{ $etudiants->links() }}
       </div>
     </div>

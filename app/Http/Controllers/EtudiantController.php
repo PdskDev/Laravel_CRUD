@@ -26,6 +26,8 @@ class EtudiantController extends Controller
        return view("ajouterEtudiant", compact("classes"));
    }
 
+   
+   
    public function store(Request $request){
 
     $request->validate([
@@ -42,8 +44,25 @@ class EtudiantController extends Controller
         "classe_id"=>$request->classe
     ]);
 
-    return back()->with("success", "Cet étudiant a été ajouté avec succès.");
+    return back()->with("successAdd", "Cet étudiant a été ajouté avec succès.");
 
    }
+
+  // public function delete(Etudiants $etudiant){
+
+   // $etudiant->delete();
+
+    //return back()->with("successDelete", "Cet étudiant(e) a été supprimé(e) avec succès.");
+
+
+  // }
+
+  public function delete($etudiant) {
+
+    Etudiants::find($etudiant)->delete();
+
+    return back()->with("successDelete", "Cet étudiant(e) a été supprimé(e) avec succès.");
+
+}
 
 }

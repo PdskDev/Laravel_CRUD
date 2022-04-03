@@ -14,8 +14,8 @@
       </div>
       @endif
 
-      @if ($message = Session::get('success'))
-      <div class="alert alert-dismissible alert-success">
+      @if ($message = Session::get('successAdd'))
+      <div class="alert alert-success">
         <strong>{{ $message }}</strong>
       </div>
       @endif
@@ -23,7 +23,7 @@
     <form action="{{ route('etudiants.ajouter') }}" method="POST">
       @csrf
         <div class="mb-3">
-          <label for="nom" class="form-label">Nom</label>
+          <label for="nom" class="form-label">Nom de famille</label>
           <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom de famille de l'étudiant(e)" required>
         </div>
         <div class="mb-3">

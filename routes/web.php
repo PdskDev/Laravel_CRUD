@@ -35,6 +35,7 @@ Route::get('/', function () {
 Route::get('/etudiants', [EtudiantController::class, "index"])->name("etudiants.index");
 Route::get('/etudiants/ajouter', [EtudiantController::class, "create"])->name("etudiants.create");
 Route::post('/etudiants/enregister', [EtudiantController::class, "store"])->name("etudiants.ajouter");
+Route::delete('/etudiants/supprimer/{etudiant}', [EtudiantController::class, "delete"])->name("etudiant.supprimer");
 
 
 

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class EtudiantController extends Controller
 {
-   public function index()
+   public function listEtudiant()
    {
     //Lister tous les étudiants
     //$etudiants = Etudiants::orderBy("id", "asc")->get();
@@ -16,19 +16,18 @@ class EtudiantController extends Controller
     //Lister les étudiants avec la pagination
     $etudiants = Etudiants::orderBy("id", "asc")->paginate(5);
     
-    return view("etudiant", compact("etudiants"));
+    return view("liste_etudiants", compact("etudiants"));
    }
 
    //Ajouter un nouvel étudiant
-   public function create() {
+   public function FormNewEtudiant() {
 
        $classes = Classes::all();
        return view("ajouterEtudiant", compact("classes"));
    }
 
    
-   
-   public function store(Request $request){
+   public function SaveNewEtudiant(Request $request){
 
     $request->validate([
         "nom"=>"required|max:100",
@@ -44,25 +43,57 @@ class EtudiantController extends Controller
         "classe_id"=>$request->classe
     ]);
 
-    return back()->with("successAdd", "Cet étudiant a été ajouté avec succès.");
+    return back()->with("successAdd", "L'étudiant(e) \"$request->nom $request->prenom\" a été enregistré(e) avec succès.");
 
    }
 
-  // public function delete(Etudiants $etudiant){
+  public function DeleteEtudiant(Etudiants $etudiant){
 
-   // $etudiant->delete();
+    //$nom_etudiant = $etudiant->nom." ".$etudiant->prenom;
 
-    //return back()->with("successDelete", "Cet étudiant(e) a été supprimé(e) avec succès.");
+   $etudiant->delete();
+
+    return back()->with("successDelete", "L'étudiant(e) \"$etudiant->nom $etudiant->prenom\" a été supprimé(e) avec succès.");
+
+   }
+
+  //public function delete($etudiant) {
+
+   // Etudiants::find($etudiant)->delete();
+
+    //return back()->with("successDelete", "Cet(te) étudiant(e) a été supprimé(e) avec succès.");
+
+//}
 
 
-  // }
 
-  public function delete($etudiant) {
+public function FicheEtudiant(Etudiants $etudiant) {
 
-    Etudiants::find($etudiant)->delete();
-
-    return back()->with("successDelete", "Cet étudiant(e) a été supprimé(e) avec succès.");
-
+    $classes = Classes::all();
+    return view("ficheEtudiant", compact("etudiant", "classes"));
 }
+
+
+
+
+public function UpdateEtudiant(Request $request, Etudiants $etudiant){
+
+    $request->validate([
+        "nom"=>"required|max:100",
+        "prenom"=>"required|max:100",
+        "classe"=>"required",
+    ]);
+
+    //Etudiants::create($request->all());
+
+    $etudiant->update([
+        "nom"=>$request->nom,
+        "prenom"=>$request->prenom,
+        "classe_id"=>$request->classe
+    ]);
+
+    return back()->with("successEdit", "Les informations de l'étudiant(e) \"$request->nom $request->prenom\" ont été bien modifiées.");
+
+   }
 
 }

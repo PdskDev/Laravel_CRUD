@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
     <!-- Favicons -->
-
 <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon.ico">
 <meta name="theme-color" content="#7952b3">
 
@@ -35,6 +34,11 @@
     
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/offcanvas.css')}}" rel="stylesheet">
+    <script src="{{ asset('js/offcanvas.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    
   </head>
   <body class="bg-light">
 
@@ -64,7 +68,6 @@
 
 
 </main>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/offcanvas.js') }}"></script>
+    
   </body>
 </html>

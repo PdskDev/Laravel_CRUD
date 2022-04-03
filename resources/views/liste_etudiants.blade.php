@@ -5,12 +5,13 @@
     
     <div>
       <div class="d-flex justify-content-end mt-4">
-          <a href="{{ route('etudiants.create') }}" class="btn btn-primary mb-3">Ajouter un nouvel etudiant</a>
+          <a href="{{ route('etudiants.nouveau') }}" class="btn btn-primary mb-3">Ajouter un nouvel etudiant</a>
       </div>
 
       @if ($message = Session::get('successDelete'))
-      <div class="alert alert-danger">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>{{ $message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endif
 
@@ -32,10 +33,10 @@
             <td>{{ $etudiant->nom }}</td>
             <td>{{ $etudiant->prenom }}</td>
             <td>{{ $etudiant->classe->libelle }}</td>
-            <td><a href="#" class="btn btn-info">Modifier</a> 
+            <td><a href="{{ route('etudiants.fiche', ['etudiant'=>$etudiant->id]) }}" class="btn btn-info">Modifier</a> 
               <a href="#" class="btn btn-danger" onclick="if(confirm('Êtes-vous sûr(e) de supprimer cet enregistrement ?'))
               { document.getElementById('et-{{ $etudiant->id }}').submit();  }">Supprimer</a>
-              <form id="et-{{ $etudiant->id }}" action="{{ route('etudiant.supprimer', ['etudiant'=>$etudiant->id]) }}" method="POST">
+              <form id="et-{{ $etudiant->id }}" action="{{ route('etudiants.supprimer', ['etudiant'=>$etudiant->id]) }}" method="POST">
                 @csrf
                 <input type="hidden" name="_method" value="delete">
               </form>

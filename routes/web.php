@@ -32,10 +32,19 @@ Route::get('/', function () {
 //});
 
 
-Route::get('/etudiants', [EtudiantController::class, "index"])->name("etudiants.index");
-Route::get('/etudiants/ajouter', [EtudiantController::class, "create"])->name("etudiants.create");
-Route::post('/etudiants/enregister', [EtudiantController::class, "store"])->name("etudiants.ajouter");
-Route::delete('/etudiants/supprimer/{etudiant}', [EtudiantController::class, "delete"])->name("etudiant.supprimer");
+Route::get('/etudiants', [EtudiantController::class, "listEtudiant"])->name("etudiants.index");
+
+Route::get('/etudiants/nouveau', [EtudiantController::class, "FormNewEtudiant"])->name("etudiants.nouveau");
+Route::post('/etudiants/enregister', [EtudiantController::class, "SaveNewEtudiant"])->name("etudiants.ajouter");
+
+Route::get('/etudiants/fiche/{etudiant}', [EtudiantController::class, "FicheEtudiant"])->name("etudiants.fiche");
+Route::put('/etudiants/editer/{etudiant}', [EtudiantController::class, "UpdateEtudiant"])->name("etudiants.editer");
+
+Route::delete('/etudiants/supprimer/{etudiant}', [EtudiantController::class, "DeleteEtudiant"])->name("etudiants.supprimer");
+
+
+
+
 
 
 
